@@ -11,3 +11,8 @@ fun generate(numRows: Int): List<List<Int>> {
     }
     return triangle
 }
+
+
+
+
+
