@@ -17,6 +17,7 @@ fun main() {
         // Читаем строку с символами
         val string = reader.readLine()
 
+
         // Читаем массив чисел
         val numbers = reader.readLine().split(" ").map { it.toInt() }
 
