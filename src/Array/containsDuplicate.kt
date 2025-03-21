@@ -1,11 +1,14 @@
 package Array
 
 fun containsDuplicate(nums: IntArray): Boolean {
-    if (nums.isEmpty()) return false
-    return nums.toList().groupingBy { it }.eachCount().any { it.value > 1 }
+    nums.sort()
+
+
+    return false
 }
 
+
 fun main() {
-    val arr = intArrayOf(1,2,3,1)
+    val arr = intArrayOf(1,2,3,0, 5 ,6 )
     println(containsDuplicate(arr))
 }

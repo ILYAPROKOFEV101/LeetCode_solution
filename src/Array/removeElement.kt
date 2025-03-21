@@ -1,16 +1,15 @@
 
-fun removeElement(nums: IntArray, `val`: Int): Int {
-    var k = 0 // Индекс для записи элементов, которые не равны `val`
-
-    for (i in nums.indices) {
-        if (nums[i] != `val`) {
-            nums[k] = nums[i]
-            k++
+    fun removeElement(nums: IntArray, `val`: Int): Int {
+       var index = 0
+        for ( i in nums.indices){
+            if(nums[i] != `val`){
+                nums[index] =  nums[i]
+                index++
+            }
         }
+        return index
     }
 
-    return k
-}
 
 fun main() {
     val nums = intArrayOf(3, 2, 2, 3)
