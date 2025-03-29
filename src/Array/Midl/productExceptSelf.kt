@@ -1,22 +1,20 @@
 package Array.Midl
 
 fun productExceptSelf(nums: IntArray): IntArray {
-    var solution = mutableListOf<Int>()
-    val resultArray = nums.groupBy { it }
-        .filter { it.key != 0 }
-        .keys
-        .toIntArray()
+   var result = IntArray(nums.size)
+    result[0] = 1
 
-    val product = resultArray.fold(1) { acc, num -> acc * num } // Используем fold для вычисления произведения
-
-    for(i in 0 until nums.size){
-        var  value = 0
-        if(nums[i] != 0 ) value = product / nums[i]
-        solution.add(value)
-
+    for(i in 1 until nums.size){
+        result[i] = result[i - 1] + nums[i - 1 ]
     }
-    return solution.toIntArray()
 
+    var rightProduct = 1
+    for (i in nums.size - 1 downTo 0) {
+        result[i] *= rightProduct
+        rightProduct *= nums[i]
+    }
+
+    return result
 }
 
 fun main(){
