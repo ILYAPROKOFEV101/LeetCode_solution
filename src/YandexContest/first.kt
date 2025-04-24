@@ -20,3 +20,4 @@ fun main() {
     // Вывод результата
     println(result.toString())
 }
+
