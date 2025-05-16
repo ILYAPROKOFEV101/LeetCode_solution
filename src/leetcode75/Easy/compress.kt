@@ -1,19 +1,32 @@
 package leetcode75.Easy
 
 fun compress(chars: CharArray): Int {
-    var mutableMap : MutableMap<Char,Int> = mutableMapOf()
+    var write =  0
+    var read = 0
 
-    for (char in chars ) {
-        mutableMap[char] = mutableMap.getOrDefault(char, 0) + 1
-    }
-    var result = 0
-    for ((key, value) in mutableMap) {
-        result += 1 // за каждый ключ (символ) добавляем 1
-        if (value > 1) {
-            result += value.toString().length // добавляем длину числа (если больше 1)
+    while ( read < chars.size) {
+        var currantChar = chars[read]
+        var count = 0
+
+        while (read < chars.size && chars[read] == currantChar) {
+            read++
+            count++
         }
+
+        chars[write] = currantChar
+        write++
+
+
+
+        if (count > 1) {
+            for(j in count.toString()){
+                chars[write++] = j
+
+            }
+        }
+
     }
-    return result
+     return write
 }
 
 fun main(){

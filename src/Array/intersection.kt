@@ -2,21 +2,26 @@ package Array
 
 
 fun intersection(nums1: IntArray, nums2: IntArray): IntArray {
-    val frequencyMap = mutableMapOf<Int, Int>() // Для подсчета частоты элементов в nums1
-    val result = mutableListOf<Int>() // Для хранения результата
+        val fetchMap = mutableMapOf<Int, Int>()
 
-    // Подсчитываем частоту каждого элемента в nums1
-    for (num in nums1) {
-        frequencyMap[num] = frequencyMap.getOrDefault(num, 0) + 1
-    }
+        for ( num in nums1){
+            fetchMap[num] = fetchMap.getOrDefault(num, 0) + 1
+        }
 
-    // Проверяем элементы nums2 и добавляем их в результат, если они есть в frequencyMap
-    for (num in nums2) {
-        if (frequencyMap.containsKey(num) && frequencyMap[num]!! > 0) {
+    val result = mutableListOf<Int>()
+
+    for ( num in nums2){
+        val count = fetchMap.getOrDefault(num, 0)
+        if (count > 0){
             result.add(num)
-            frequencyMap[num] = frequencyMap[num]!! - 1 // Уменьшаем счетчик
+            fetchMap[num] = count - 1
         }
     }
+    return result.toIntArray()
+}
 
-    return result.toIntArray() // Преобразуем список в массив
+fun main(){
+    val arr = intArrayOf(1,2,2,1)
+    val arr2 = intArrayOf(2,2)
+    println(intersection(arr, arr2).contentToString())
 }
