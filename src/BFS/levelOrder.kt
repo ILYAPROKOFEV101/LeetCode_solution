@@ -1,27 +1,36 @@
 import leetcode75.TreeNode
 import java.util.*
 
-fun levelOrder(root: TreeNode?): List<List<Int>> {
+fun zigzagLevelOrder(root: TreeNode?): List<List<Int>> {
     val result = mutableListOf<List<Int>>()
     if(root == null) return result
+
+    var levelNumber = 0
+
     val queue : Queue<TreeNode> = LinkedList()
     queue.add(root)
 
-
-
     while(queue.isNotEmpty()){
-        val levelSize =  queue.size
+        val levelSize  = queue.size
         val level = mutableListOf<Int>()
 
+        repeat(levelSize){
+            var node = queue.poll()
 
-        repeat(levelSize) {
-            val node = queue.poll()
-            level.add(node.`val`) // добавляем значение текущего узла
-
-            if (node.left != null) queue.add(node.left)
-            if (node.right != null) queue.add(node.right)
+            if(node.`val` != null){
+                level.add(node.`val`)
+                if(node.left != null ) queue.add(node.left)
+                if(node.right != null) queue.add(node.right)
+            }
         }
-        result.add(level)
+
+        if(levelNumber % 2 == 0){
+            result.add(level.reversed())
+        } else {
+            result.add(level)
+        }
+
+        levelNumber++
     }
     return result
 }
