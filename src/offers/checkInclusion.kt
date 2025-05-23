@@ -1,24 +1,30 @@
 package offers
 
 fun checkInclusion  (s1: String, s2: String): Boolean {
-    if(s1 in s2) return true
+    if(s1.length > s2.length) return false
 
-    var left = 0
-        val size = s1.length
-        for(i in size - 1 until s2.length){
-            var value = s2.slice(left +1 until i)
-            if( s1 == value.reversed()){
-                return true
+
+    var need = IntArray(26)
+    var window = IntArray(26)
+
+    for(c in s1){
+        need[c - 'a']++
+    }
+
+    for(i in s2.indices){
+        window[s2[i] - 'a']++
+            if(i >= s1.length) {
+                window[s2[i - s1.length] - 'a']--
             }
-            while(size < (i - left)){
-                left++
-            }
-        }
-        return false 
+        if(need.contentEquals(window)) return true
+    }
+
+return false
+
     }
 
 fun main(){
-    val arr1 = "ab"
+    val arr1 = "boa"
     val arr2 = "eidboaoo"
     println(checkInclusion(arr1, arr2))
 }

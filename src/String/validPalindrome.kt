@@ -24,6 +24,8 @@ fun validPalindrome(s: String): Boolean {
         right--
     }
     return true
+
+
 }
 
 fun main (){

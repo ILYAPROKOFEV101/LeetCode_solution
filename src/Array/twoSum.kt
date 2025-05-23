@@ -1,17 +1,20 @@
 package Array
 
-fun twoSum(nums: IntArray, target: Int): IntArray {
-    val numMap = mutableMapOf<Int, Int>()
+import Two_Pointers.twoSum
 
-    for ((index, num) in nums.withIndex()) {
-        val complement = target - num
-        if (numMap.containsKey(complement)) {
-            return intArrayOf(numMap[complement]!!, index)
+class Solution {
+    fun twoSum(nums: IntArray, target: Int): IntArray {
+        var map = mutableMapOf<Int, Int>()
+
+        for(i in 0 until nums.size){
+            val needed = target - nums[i]
+            if(needed in map){
+                return intArrayOf(i, map[needed]!!)
+            }
+            map[nums[i]] = i
         }
-        numMap[num] = index
+        return intArrayOf()
     }
-
-    return intArrayOf()
 }
 
 
