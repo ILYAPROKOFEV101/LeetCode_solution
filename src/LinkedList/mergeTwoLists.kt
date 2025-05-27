@@ -1,33 +1,29 @@
-package LinkedList
-
 import HashTable.ListNode
+import java.util.*
 
-fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
-    val dummy = ListNode(0)
-    if( list1 == null && list2 == null) {
-        return null
-    }
+class Solution {
+    fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
+        val dumy = ListNode(0)
+        if(list1 == null && list2 == null) return dumy
 
-    var current = dummy
+        var current = dumy
 
-    var l = list1
-    var r = list2
+        var l = list1
+        var r = list2
 
-    while(l?.next != null && r?.next != null) {
-        if(l.`val` < r.`val`){
-            current.next = l
-            l = l.next
-        } else {
-            current.next = r
-            r = r.next
+        while(l != null && r != null){
+            if(l.`val` < r.`val`){
+                current.next = l
+                l = l.next
+            } else {
+                current.next = r
+                r = r.next
+            }
+            current = current.next!!
         }
-        current = current.next!!
+
+        current.next = l ?: r
+
+        return dumy.next
     }
-
-    current.next = l ?: r
-
-
-
-    return dummy.next
-
 }

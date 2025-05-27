@@ -28,3 +28,28 @@ fun main(){
     val result = twoSum(arr, target)
     println(result.contentToString())
 }
+
+class Solution {
+    fun lengthOfLongestSubstring(s: String): Int {
+
+        if(s.isEmpty()) return 0
+        val  set = mutableSetOf<Char>()
+
+        var left = 0
+        var maxCount = 0
+
+
+        for(i in 0 until s.length){
+            while(s[i] in set){
+                set.remove(s[left])
+                left++
+            }
+            maxCount = maxOf(maxCount, i - left +1 )
+
+            set.add(s[i])
+        }
+
+        return maxCount
+
+    }
+}
